@@ -89,12 +89,15 @@ After completing the Stack Creation Wizard, the subsequent step prompts for vari
 After filling in the required input variables, click next to review the stack values and create the stack.
 
 In the Stack page use the appropriate buttons to plan/apply/destroy your stack.
+15. Follow the steps below under After Deploying Workload Expansion (Resource Manager) to re-run the apply again with updated Stack
 
-
+### After Deploying Workload Expansion
+Users need to go back to the baseline stack `enterprise-landing-zone` to re-run terraform apply to update baseline configuration.
 #### Resource Manager
 1. Navigate to the baseline stack in Resource Manager.
 2. Go to Variables section of the baseline stack, add the value of `nonprod_additional_workload_subnets_cidr_blocks` and `nonprod_workload_compartment_names` or `prod_additional_workload_subnets_cidr_blocks` and `prod_workload_compartment_names`.
 3. Click "Terraform Apply" to update the stack
+
 ## User
 
 The Oracle Enterprise Landing Zone Workload Expansion should be deployed by a user who is a member of the Administrators group for the tenancy. This user need to have an api key entry defined as decribed [here](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformproviderconfiguration.htm). Once the user and API Key are defined your oci-cli config should resemble.
