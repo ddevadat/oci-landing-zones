@@ -4,7 +4,7 @@ This configuration guide will detail the required and available configurations n
 
 ## Prerequisites
 
-Oracle Enterprise Landing Zone(OELZ) stack will be fully deployed on the OCI Tenanacy.
+Oracle Enterprise Landing Zone(OELZ) stack will be fully deployed on the OCI Tenancy.
 
 
 ## Minimum Required Configuration
