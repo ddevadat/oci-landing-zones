@@ -33,6 +33,33 @@
     * `terraform apply`
 
 7. Terraform will provision your resources and provide outputs once it completes.
+8. Follow the below steps under After Deploying Workload Expansion to re-run the apply again and update configuration
+
+### After Deploying Workload Expansion
+Users need to go back to the baseline stack `enterprise-landing-zone` to re-run terraform apply to update baseline configuration.
+
+#### Terraform CLI
+1. Navigate to the baseline stack `enterprise-landing-zone`.
+2. Add two variables into your tfvars file
+
+| Name                                                                                                              | Description                                                                                                   | Type           | Default         | Required |
+| ----------------------------------------------------------------------------------------------------------------- |---------------------------------------------------------------------------------------------------------------|----------------| --------------- | :------: |
+| <a name="nonprod_additional_workload_subnets_cidr_blocks"></a> [nonprod_additional_workload_subnets_cidr_blocks](#workload\_admin\_group\_name)             | List of 3 subnets CIDR Block used in workload expansion. (Do not include the cidr blocks created in baseline) | `list(string)` |  |    yes    |
+| <a name="nonprod_workload_compartment_names"></a> [nonprod_workload_compartment_names](#application\_admin\_group\_name)             | Workload compartment name. (Also include the workload name created in baseline)                               | `list(string)` |  |    yes    |
+
+or your workload expansion was deployed in Prod:
+
+| Name                                                                                                              | Description                                                                      | Type           | Default         | Required |
+| ----------------------------------------------------------------------------------------------------------------- |----------------------------------------------------------------------------------|----------------| --------------- | :------: |
+| <a name="prod_additional_workload_subnets_cidr_blocks"></a> [prod_additional_workload_subnets_cidr_blocks](#workload\_admin\_group\_name)       | List of 3 subnets CIDR Block used in workload expansion.(Do not include the cidr blocks created in baseline)                         | `list(string)` |  |    yes    |
+| <a name="prod_workload_compartment_names"></a> [prod_workload_compartment_names](#application\_admin\_group\_name)             | Workload compartment name.  (Also include the workload name created in baseline) | `list(string)` |  |    yes    |
+
+3. From the root of the module run the following commands to deploy the terraform.
+    * `terraform init`
+    * `terraform plan`
+    * `terraform apply`
+4. The subnet CIDR blocks are used to update the route table in Hub.
+5. The workload name is used to update the related policy in the environment.
 
 ### Resource Manager
 1. From the console home page, navigate to `Developer Services -> Resource Manager -> Stacks`
@@ -63,31 +90,6 @@ After filling in the required input variables, click next to review the stack va
 
 In the Stack page use the appropriate buttons to plan/apply/destroy your stack.
 
-### After Deploying Workload Expansion
-Users need to go back to the baseline stack `enterprise-landing-zone` to re-run terraform apply to update baseline configuration.
-
-#### Terraform CLI
-1. Navigate to the baseline stack `enterprise-landing-zone`.
-2. Add two variables into your tfvars file
-
-| Name                                                                                                              | Description                                                                                                   | Type           | Default         | Required |
-| ----------------------------------------------------------------------------------------------------------------- |---------------------------------------------------------------------------------------------------------------|----------------| --------------- | :------: |
-| <a name="nonprod_additional_workload_subnets_cidr_blocks"></a> [nonprod_additional_workload_subnets_cidr_blocks](#workload\_admin\_group\_name)             | List of 3 subnets CIDR Block used in workload expansion. (Do not include the cidr blocks created in baseline) | `list(string)` |  |    yes    |
-| <a name="nonprod_workload_compartment_names"></a> [nonprod_workload_compartment_names](#application\_admin\_group\_name)             | Workload compartment name. (Also include the workload name created in baseline)                               | `list(string)` |  |    yes    |
-
-or your workload expansion was deployed in Prod:
-
-| Name                                                                                                              | Description                                                                      | Type           | Default         | Required |
-| ----------------------------------------------------------------------------------------------------------------- |----------------------------------------------------------------------------------|----------------| --------------- | :------: |
-| <a name="prod_additional_workload_subnets_cidr_blocks"></a> [prod_additional_workload_subnets_cidr_blocks](#workload\_admin\_group\_name)       | List of 3 subnets CIDR Block used in workload expansion.(Do not include the cidr blocks created in baseline)                         | `list(string)` |  |    yes    |
-| <a name="prod_workload_compartment_names"></a> [prod_workload_compartment_names](#application\_admin\_group\_name)             | Workload compartment name.  (Also include the workload name created in baseline) | `list(string)` |  |    yes    |
-
-3. From the root of the module run the following commands to deploy the terraform.
-    * `terraform init`
-    * `terraform plan`
-    * `terraform apply`
-4. The subnet CIDR blocks are used to update the route table in Hub.
-5. The workload name is used to update the related policy in the environment.
 
 #### Resource Manager
 1. Navigate to the baseline stack in Resource Manager.
