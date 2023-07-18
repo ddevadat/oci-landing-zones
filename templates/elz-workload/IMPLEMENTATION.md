@@ -7,7 +7,7 @@
 - [OCI Terraform provider](https://registry.terraform.io/providers/oracle/oci/latest/docs) v4.109.0 or later
 - [oci - cli](https://github.com/oracle/oci-cli)
 
-2) **Oracle Enterprise Landing Zone is deployed.**
+2) **Oracle Enterprise Landing Zone is deployed.** [Landing Zone V2](https://preview.content.oci.oracleiaas.com/en-us/iaas/Content/cloud-adoption-framework/implementation-landing-zone-v2.htm?bundle=14499&showfilteredtoc=true)
 3) If users need to deploy multiple workloads, they need to copy and paste elz-worload folder to deploy each workload separately.
 
 ## Deployment
